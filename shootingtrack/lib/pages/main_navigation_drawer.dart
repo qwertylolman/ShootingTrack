@@ -1,18 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shootingtrack/dimens.dart';
+import 'package:shootingtrack/pages/weapons_list_page.dart';
 
-class MainNavigationDrawer extends StatefulWidget {
+class MainNavigationDrawer extends StatelessWidget {
   const MainNavigationDrawer({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _MainNavigationDrawer();
-
-}
-
-class _MainNavigationDrawer extends State {
-  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    final contentColor = Theme.of(context).colorScheme.onPrimary;
+    final appLocalizations = AppLocalizations.of(context)!;
+
+    return Drawer(
+          child: Material(
+              child: ListView(
+                children: <Widget>[
+                  const SizedBox(height: Dimens.buttonHeight),
+                  buildMenuItem(
+                      title: appLocalizations.weaponsListTitle,
+                      icon: Icons.construction_outlined,
+                      contentColor: contentColor,
+                      onTap: () => selectedItem(context, 0)
+                  ),
+                ],
+              )
+          )
+      );
   }
 
+  Widget buildMenuItem({
+    required String title,
+    required IconData icon,
+    required Color contentColor,
+    required VoidCallback onTap,
+  }) {
+
+    return ListTile(
+      leading: Icon(icon, color: contentColor),
+      title: Text(title),
+      onTap: onTap,
+    );
+  }
+
+  void selectedItem(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => WeaponsListPage(),
+        ));
+        break;
+    }
+  }
 }

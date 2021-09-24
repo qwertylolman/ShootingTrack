@@ -1,6 +1,5 @@
 {
     "appName": "Shooting Track",
-    "@appName": {
-        "description": "Application name"
-    }
+
+    "weaponsListTitle": "Weapons list"
 }
