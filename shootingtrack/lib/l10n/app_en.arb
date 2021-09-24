@@ -1,0 +1,6 @@
+{
+    "appName": "Shooting Track",
+    "@appName": {
+        "description": "Application name"
+    }
+}
