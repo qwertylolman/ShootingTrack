@@ -1,5 +1,7 @@
 {
     "appName": "Shooting Track",
 
-    "weaponsListTitle": "Weapons list"
+    "weaponsListTitle": "Weapons list",
+
+    "addWeaponTitle": "Add weapon"
 }
