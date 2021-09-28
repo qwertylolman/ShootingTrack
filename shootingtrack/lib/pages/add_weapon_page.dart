@@ -10,6 +10,8 @@ class AddWeaponPage extends StatefulWidget {
 }
 
 class _AddWeaponPageState extends State<AddWeaponPage> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
@@ -18,6 +20,11 @@ class _AddWeaponPageState extends State<AddWeaponPage> {
         icon: Icon(Icons.arrow_back),
         onPressed: () => Navigator.of(context).pop(),
       )
+    ),
+    body: Form(
+      key: _formKey,
+      child:
+        
     ),
   );
 }
