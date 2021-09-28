@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 class Manufacturer {
   @HiveField(0)
   String id;
-  @HiveField(0)
+  @HiveField(1)
   String name;
 
   Manufacturer({

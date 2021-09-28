@@ -3,5 +3,6 @@
 
     "weaponsListTitle": "Weapons list",
 
-    "addWeaponTitle": "Add weapon"
+    "addWeaponTitle": "Add weapon",
+    "editWeaponTitle": "Edit weapon"
 }
