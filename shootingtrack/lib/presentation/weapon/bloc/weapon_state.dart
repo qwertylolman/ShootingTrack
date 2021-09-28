@@ -2,6 +2,8 @@ import 'package:shootingtrack/data/entities/weapon.dart';
 import 'package:shootingtrack/presentation/common/base_state.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'weapon_state.freezed.dart';
+
 @freezed
 class WeaponState with _$WeaponState implements BaseState {
   const WeaponState._();
