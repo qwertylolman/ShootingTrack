@@ -13,10 +13,13 @@ class Weapon {
   String model;
   @HiveField(3)
   Gauge gauge;
+  @HiveField(4)
+  String name;
 
   Weapon({
     required this.id,
     required this.manufacturer,
     required this.model,
-    required this.gauge});
+    required this.gauge,
+    required this.name});
 }

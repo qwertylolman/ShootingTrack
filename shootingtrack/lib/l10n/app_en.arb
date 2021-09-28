@@ -1,8 +1,14 @@
 {
     "appName": "Shooting Track",
 
+    "save": "Save",
+    "cancel": "Cancel",
+
     "weaponsListTitle": "Weapons list",
 
     "addWeaponTitle": "Add weapon",
-    "editWeaponTitle": "Edit weapon"
+    "editWeaponTitle": "Edit weapon",
+    "weaponNameField": "Weapon name",
+
+    "localizationEmptyOrNullString": "Cannot be empty"
 }
