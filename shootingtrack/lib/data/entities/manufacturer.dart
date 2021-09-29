@@ -9,5 +9,6 @@ class Manufacturer {
 
   Manufacturer({
     required this.id,
-    required this.name});
+    required this.name,
+  });
 }

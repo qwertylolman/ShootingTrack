@@ -1,13 +1,13 @@
 import 'package:hive/hive.dart';
 
-@HiveType(typeId: 0)
-class Gauge {
+@HiveType(typeId: 4)
+class Model {
   @HiveField(0)
   String id;
   @HiveField(1)
   String name;
 
-  Gauge({
+  Model({
     required this.id,
     required this.name,
   });

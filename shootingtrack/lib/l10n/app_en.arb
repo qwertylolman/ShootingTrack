@@ -3,6 +3,11 @@
 
     "save": "Save",
     "cancel": "Cancel",
+    "delete": "Delete",
+    "back": "Back",
+    "close": "Close",
+    "ok": "Ok",
+    "confirm": "Confirm",
 
     "weaponsListTitle": "Weapons list",
 
@@ -11,5 +16,8 @@
     "weaponNameField": "Weapon name",
     "weaponModelField": "Model",
 
-    "localizationEmptyOrNullString": "Cannot be empty"
+    "localizationEmptyOrNullString": "Cannot be empty.",
+
+    "areYouSure": "Are you sure?",
+    "destructiveActionDescription": "This action cannot be undone."
 }

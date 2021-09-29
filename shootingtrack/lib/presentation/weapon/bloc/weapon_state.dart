@@ -1,4 +1,4 @@
-import 'package:shootingtrack/data/entities/weapon.dart';
+import 'package:shootingtrack/data/data.dart';
 import 'package:shootingtrack/presentation/common/base_state.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,5 +15,10 @@ class WeaponState with _$WeaponState implements BaseState {
   @Implements(EmptyState)
   const factory WeaponState.empty() = Empty;
 
-  const factory WeaponState.success({required Weapon weapon}) = Success;
+  const factory WeaponState.success({
+    required Weapon weapon,
+    required List<Manufacturer> manufacturers,
+    required List<Model> models,
+    required List<Gauge> gauges,
+  }) = Success;
 }

@@ -1,10 +1,20 @@
-import 'package:shootingtrack/data/entities/gauge.dart';
-import 'package:shootingtrack/domain/db.dart';
+import 'package:collection/src/iterable_extensions.dart';
+import 'package:shootingtrack/common.dart';
+import 'package:shootingtrack/data/entities/entities.dart';
+import 'package:shootingtrack/domain/domain.dart';
 
-class GaugesRepository {
-  Future<Iterable<Gauge>> getAllWeapons() async {
-    var box = await DB.openBox<Gauge>();
+class GaugesRepository extends CrudRepository<Gauge> {
+  Future<Gauge> createGauge(
+      String name
+    ) async {
+    var gauge = Gauge(id: DB.generateId(), name: name);
+    return await create(gauge.id, gauge);
+  }
 
-    return box.values;
+  Future<Gauge?> getByName(
+      String name
+  ) async {
+    var gauges = await readAll();
+    return gauges.firstWhereOrNull((i) => equalsIgnoreCase(i.name, name));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:shootingtrack/common.dart';
 import 'package:shootingtrack/data/entities/weapon.dart';
 import 'package:shootingtrack/di/di.dart';
@@ -20,7 +21,11 @@ class WeaponPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<WeaponCubit>(
       create: (BuildContext context) => WeaponCubit(
-        weaponsRepository: getIt.get())..onInit(weaponId),
+        weaponsRepository: getIt.get(),
+          gaugesRepository: getIt.get(),
+          modelsRepository: getIt.get(),
+          manufacturersRepository: getIt.get())
+        ..onInit(weaponId),
       child: const WeaponPageWidget(),
     );
   }
@@ -38,7 +43,9 @@ class _WeaponPageState extends State<WeaponPageWidget> {
   final _formKey = GlobalKey<FormState>();
 
   final _nameEditingController = TextEditingController();
+  final _manufacturerEditingController = TextEditingController();
   final _modelEditingController = TextEditingController();
+  final _gaugeEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) =>
@@ -49,21 +56,8 @@ class _WeaponPageState extends State<WeaponPageWidget> {
             title: Text(state is EmptyState
               ? AppLocalizations.of(context)!.addWeaponTitle
               : AppLocalizations.of(context)!.editWeaponTitle),
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: cancelChanges,
-            ),
-            actions: [
-              buildSaveButton(
-                context,
-                () => {
-                  if (state is Success) {
-                    saveChanges(state.weapon)
-                  } else {
-                    saveChanges(null)
-                  }
-                }),
-            ],
+            leading: buildCloseButton(context, cancelChanges),
+            actions: buildAppBarMenuIcons(context, state),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(
@@ -75,6 +69,7 @@ class _WeaponPageState extends State<WeaponPageWidget> {
               child: Column(
                 children: <Widget>[
                   TextFormField(
+                    autofocus: state is Empty,
                     initialValue: state is Success
                       ? state.weapon.name
                       : '',
@@ -87,7 +82,7 @@ class _WeaponPageState extends State<WeaponPageWidget> {
                   ),
                   TextFormField(
                       initialValue: state is Success
-                        ? state.weapon.model
+                        ? state.weapon.model.name
                         : '',
                       maxLength: Common.maxWeaponModelLength,
                       validator: (value) => validateStringNotNullNorEmpty(context, value),
@@ -95,6 +90,32 @@ class _WeaponPageState extends State<WeaponPageWidget> {
                       decoration: InputDecoration(
                         labelText: AppLocalizations.of(context)!.weaponModelField,
                       )
+                  ),
+                  TypeAheadField(
+                    textFieldConfiguration: TextFieldConfiguration(
+                        autofocus: true,
+                        style: DefaultTextStyle.of(context).style.copyWith(
+                            fontStyle: FontStyle.italic
+                        ),
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder()
+                        ),
+                    ),
+                    suggestionsCallback: (pattern) async {
+                      return await BackendService.getSuggestions(pattern);
+                    },
+                    itemBuilder: (context, suggestion) {
+                      return ListTile(
+                        leading: Icon(Icons.shopping_cart),
+                        title: Text(suggestion['name']),
+                        subtitle: Text('\$${suggestion['price']}'),
+                      );
+                    },
+                    onSuggestionSelected: (suggestion) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ProductPage(product: suggestion)
+                      ));
+                    },
                   )
                 ],
               )
@@ -112,6 +133,23 @@ class _WeaponPageState extends State<WeaponPageWidget> {
     super.dispose();
   }
 
+  List<Widget> buildAppBarMenuIcons(BuildContext context, WeaponState state) {
+    if (state is Success) {
+      return <Widget>[
+        buildDeleteButton(context, () { deleteWeapon(state.weapon); }),
+        buildSaveButton(context, () { saveChanges(state.weapon); }),
+      ];
+    }
+
+    if (state is Empty) {
+      return <Widget>[
+        buildSaveButton(context, () { saveChanges(null); }),
+      ];
+    }
+
+    return <Widget>[];
+  }
+
   void cancelChanges() {
     Navigator.of(context).pop();
   }
@@ -122,13 +160,45 @@ class _WeaponPageState extends State<WeaponPageWidget> {
     }
 
     if (weapon == null) {
-      weapon = Weapon(
-        id: "",
-        manufacturer: Manufacturer
-
-      )
+      BlocProvider.of<WeaponCubit>(context).createWeapon(
+          _nameEditingController.value.text,
+          _manufacturerEditingController.value.text,
+          _modelEditingController.value.text,
+          _gaugeEditingController.value.text);
+    } else {
+      BlocProvider.of<WeaponCubit>(context).updateWeapon(
+          weapon.id,
+          _nameEditingController.value.text,
+          _manufacturerEditingController.value.text,
+          _modelEditingController.value.text,
+          _gaugeEditingController.value.text);
     }
 
+    Navigator.of(context).pop();
+  }
+
+  void deleteWeapon(Weapon weapon) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(AppLocalizations.of(context)!.areYouSure),
+            content: Text(AppLocalizations.of(context)!.destructiveActionDescription),
+            actions: <Widget> [
+              TextButton(
+                child: Text(AppLocalizations.of(context)!.confirm),
+                onPressed: () { deleteWeaponConfirmed(weapon); },
+              ),
+              TextButton(
+                child: Text(AppLocalizations.of(context)!.cancel),
+                onPressed: () { Navigator.of(context).pop(); },
+              ),
+            ],
+          );
+        });
+  }
+
+  void deleteWeaponConfirmed(Weapon weapon) {
     Navigator.of(context).pop();
   }
 }
