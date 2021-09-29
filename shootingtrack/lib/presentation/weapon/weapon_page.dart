@@ -87,13 +87,13 @@ class _WeaponPageState extends State<WeaponPageWidget> {
                   ),
                   TextFormField(
                       initialValue: state is Success
-                          ? state.weapon.model
-                          : '',
+                        ? state.weapon.model
+                        : '',
                       maxLength: Common.maxWeaponModelLength,
                       validator: (value) => validateStringNotNullNorEmpty(context, value),
                       controller: _modelEditingController,
                       decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.weaponNameField,
+                        labelText: AppLocalizations.of(context)!.weaponModelField,
                       )
                   )
                 ],
@@ -107,6 +107,7 @@ class _WeaponPageState extends State<WeaponPageWidget> {
   @override
   void dispose() {
     _nameEditingController.dispose();
+    _modelEditingController.dispose();
 
     super.dispose();
   }
@@ -118,6 +119,14 @@ class _WeaponPageState extends State<WeaponPageWidget> {
   void saveChanges(Weapon? weapon) {
     if (!_formKey.currentState!.validate()) {
       return;
+    }
+
+    if (weapon == null) {
+      weapon = Weapon(
+        id: "",
+        manufacturer: Manufacturer
+
+      )
     }
 
     Navigator.of(context).pop();

@@ -9,6 +9,7 @@
     "addWeaponTitle": "Add weapon",
     "editWeaponTitle": "Edit weapon",
     "weaponNameField": "Weapon name",
+    "weaponModelField": "Model",
 
     "localizationEmptyOrNullString": "Cannot be empty"
 }

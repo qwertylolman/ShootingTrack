@@ -17,4 +17,16 @@ class WeaponsRepository {
     var allWeapons = await getAllWeapons();
     return allWeapons.firstWhereOrNull((element) => element.id == id);
   }
+
+  Future<void> saveWeapon(Weapon weapon) async {
+    var box = await DB.openBox<Weapon>();
+
+    box.put(weapon.id, weapon);
+  }
+
+  Future<void> deleteWeapon(Weapon weapon) async {
+    var box = await DB.openBox<Weapon>();
+
+    box.delete(weapon.id);
+  }
 }
