@@ -120,6 +120,6 @@ class _WeaponPageState extends State<WeaponPageWidget> {
       return;
     }
 
-    Navigator.of(context).pop();
+    Navigator.of(context).pop(weapon);
   }
 }
