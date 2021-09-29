@@ -81,9 +81,9 @@ class _WeaponPageState extends State<WeaponPageWidget> {
                       labelText: AppLocalizations.of(context)!.weaponNameField,
                     )
                   ),
-                  buildManufacturersAutocomplete(context),
-                  buildModelAutocomplete(context),
-                  buildGaugeAutocomplete(context),
+                  buildManufacturerWidget(context),
+                  buildModelWidget(context),
+                  buildGaugeWidget(context),
                 ],
               )
             ),
@@ -119,7 +119,7 @@ class _WeaponPageState extends State<WeaponPageWidget> {
     return <Widget>[];
   }
 
-  Widget buildManufacturersAutocomplete(BuildContext context) {
+  Widget buildManufacturerWidget(BuildContext context) {
     return TypeAheadFormField<Manufacturer?> (
       textFieldConfiguration: TextFieldConfiguration(
         controller: _manufacturerEditingController,
@@ -141,7 +141,7 @@ class _WeaponPageState extends State<WeaponPageWidget> {
     );
   }
 
-  Widget buildModelAutocomplete(BuildContext context) {
+  Widget buildModelWidget(BuildContext context) {
     return TypeAheadFormField<Model?> (
       textFieldConfiguration: TextFieldConfiguration(
         controller: _modelEditingController,
@@ -163,7 +163,7 @@ class _WeaponPageState extends State<WeaponPageWidget> {
     );
   }
 
-  Widget buildGaugeAutocomplete(BuildContext context) {
+  Widget buildGaugeWidget(BuildContext context) {
     return TypeAheadFormField<Gauge?>(
       textFieldConfiguration: TextFieldConfiguration(
         controller: _gaugeEditingController,
