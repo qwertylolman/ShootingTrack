@@ -1,9 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shootingtrack/common.dart';
+import 'package:shootingtrack/data/entities/weapon.dart';
 import 'package:shootingtrack/di/di.dart';
 import 'package:shootingtrack/dimens.dart';
 import 'package:shootingtrack/domain/validators/validators.dart';
@@ -25,7 +24,6 @@ class WeaponPage extends StatelessWidget {
       child: const WeaponPageWidget(),
     );
   }
-
 }
 
 class WeaponPageWidget extends StatefulWidget {
@@ -39,55 +37,85 @@ class _WeaponPageState extends State<WeaponPageWidget> {
 
   final _formKey = GlobalKey<FormState>();
 
+  final _nameEditingController = TextEditingController();
+  final _modelEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) =>
-      BlocBuilder<WeaponCubit, WeaponState>(
-        builder: (BuildContext context, WeaponState state) =>
-          Scaffold(
-            appBar: AppBar(
-              title: Text(state is EmptyState
-                  ? AppLocalizations.of(context)!.addWeaponTitle
-                  : AppLocalizations.of(context)!.editWeaponTitle),
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: cancelChanges,
-              ),
-              actions: [
-                buildSaveButton(context, saveChanges),
-              ],
+    BlocBuilder<WeaponCubit, WeaponState>(
+      builder: (BuildContext context, WeaponState state) =>
+        Scaffold(
+          appBar: AppBar(
+            title: Text(state is EmptyState
+              ? AppLocalizations.of(context)!.addWeaponTitle
+              : AppLocalizations.of(context)!.editWeaponTitle),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: cancelChanges,
             ),
-            body: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimens.baseMargin,
-                    vertical: Dimens.baseMargin),
-                child: SingleChildScrollView(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                          initialValue: state is Success
-                              ? state.weapon.name
-                              : '',
-                          maxLength: Common.maxWeaponNameLength,
-                          validator: (value) => validateStringNotNullNorEmpty(context, value),
-                          decoration: InputDecoration(
-                            labelText: AppLocalizations.of(context)!.weaponNameField,
-                          )
+            actions: [
+              buildSaveButton(
+                context,
+                () => {
+                  if (state is Success) {
+                    saveChanges(state.weapon)
+                  } else {
+                    saveChanges(null)
+                  }
+                }),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: Dimens.baseMargin,
+              vertical: Dimens.baseMargin),
+            child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    initialValue: state is Success
+                      ? state.weapon.name
+                      : '',
+                    maxLength: Common.maxWeaponNameLength,
+                    validator: (value) => validateStringNotNullNorEmpty(context, value),
+                    controller: _nameEditingController,
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.weaponNameField,
+                    )
+                  ),
+                  TextFormField(
+                      initialValue: state is Success
+                          ? state.weapon.model
+                          : '',
+                      maxLength: Common.maxWeaponModelLength,
+                      validator: (value) => validateStringNotNullNorEmpty(context, value),
+                      controller: _modelEditingController,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.weaponNameField,
                       )
-                    ],
                   )
-                ),
+                ],
               )
+            ),
             )
           )
-      );
+        )
+    );
+
+  @override
+  void dispose() {
+    _nameEditingController.dispose();
+
+    super.dispose();
+  }
 
   void cancelChanges() {
     Navigator.of(context).pop();
   }
 
-  void saveChanges() {
+  void saveChanges(Weapon? weapon) {
     if (!_formKey.currentState!.validate()) {
       return;
     }
