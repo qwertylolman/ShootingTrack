@@ -1,7 +1,9 @@
 import 'package:hive/hive.dart';
 
-@HiveType(typeId: 4)
-class Model {
+part 'model.g.dart';
+
+@HiveType(typeId : 1)
+class Model extends HiveObject {
   @HiveField(0)
   String id;
   @HiveField(1)

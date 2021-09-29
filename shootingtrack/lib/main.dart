@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
-        colorScheme: ColorScheme(
+        colorScheme: const ColorScheme(
           primary: Color(0xffcfd8dc),
           primaryVariant: Color(0xff9ea7aa),
           onPrimary: Color(0xff000000),

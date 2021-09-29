@@ -3,7 +3,7 @@ import 'package:shootingtrack/domain/db.dart';
 
 class CrudRepository<T> {
   Future<Box<T>> box() {
-    return DB.openBox<T>();
+    return DB.box<T>();
   }
 
   Future<T> create(String key, T entity) async {

@@ -2,8 +2,10 @@ import 'package:hive/hive.dart';
 
 import 'entities.dart';
 
-@HiveType(typeId: 2)
-class Weapon {
+part 'weapon.g.dart';
+
+@HiveType(typeId : 0)
+class Weapon extends HiveObject {
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -14,7 +16,6 @@ class Weapon {
   Model model;
   @HiveField(4)
   Gauge gauge;
-
 
   Weapon({
     required this.id,

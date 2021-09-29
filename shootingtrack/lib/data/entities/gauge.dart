@@ -1,7 +1,9 @@
 import 'package:hive/hive.dart';
 
-@HiveType(typeId: 0)
-class Gauge {
+part 'gauge.g.dart';
+
+@HiveType(typeId : 3)
+class Gauge extends HiveObject {
   @HiveField(0)
   String id;
   @HiveField(1)

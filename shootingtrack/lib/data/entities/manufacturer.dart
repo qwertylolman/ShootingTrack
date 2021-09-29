@@ -1,7 +1,9 @@
 import 'package:hive/hive.dart';
 
-@HiveType(typeId: 1)
-class Manufacturer {
+part 'manufacturer.g.dart';
+
+@HiveType(typeId : 2)
+class Manufacturer extends HiveObject {
   @HiveField(0)
   String id;
   @HiveField(1)
