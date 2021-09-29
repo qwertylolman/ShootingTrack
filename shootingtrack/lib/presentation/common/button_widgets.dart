@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+IconButton buildClearButton(BuildContext context, VoidCallback onPressed) =>
+    IconButton(
+      tooltip: AppLocalizations.of(context)!.clear,
+      icon: const Icon(Icons.clear),
+      onPressed: onPressed,
+    );
+
 IconButton buildBackButton(BuildContext context, VoidCallback onPressed) =>
   IconButton(
     tooltip: AppLocalizations.of(context)!.back,

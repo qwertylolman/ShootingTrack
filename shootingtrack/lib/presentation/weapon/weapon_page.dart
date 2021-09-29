@@ -69,10 +69,10 @@ class _WeaponPageState extends State<WeaponPageWidget> {
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    buildNameWidget(context, state),
                     buildManufacturerWidget(context, state),
                     buildModelWidget(context, state),
                     buildGaugeWidget(context, state),
+                    buildNameWidget(context, state),
                   ],
                 )
               ),
@@ -115,14 +115,12 @@ class _WeaponPageState extends State<WeaponPageWidget> {
 
     return TextFormField(
         autofocus: state is Empty,
-        initialValue: state is Success
-            ? state.weapon.name
-            : '',
         maxLength: Common.maxWeaponNameLength,
         validator: (value) => validateStringNotNullNorEmpty(context, value),
         controller: _nameEditingController,
         decoration: InputDecoration(
           labelText: AppLocalizations.of(context)!.weaponNameField,
+          suffixIcon: buildClearButton(context, () => _nameEditingController.clear())
         )
     );
   }
@@ -138,15 +136,22 @@ class _WeaponPageState extends State<WeaponPageWidget> {
         maxLength: Common.maxWeaponManufacturerLength,
         decoration: InputDecoration(
           labelText: AppLocalizations.of(context)!.weaponManufacturerField,
+          suffixIcon: buildClearButton(context, () => _manufacturerEditingController.clear())
         ),
+        onChanged: (text) {
+          combineNewNameIfPossible();
+        },
       ),
+      hideOnEmpty: true,
+      hideOnError: true,
+      hideOnLoading: true,
       validator: (value) => validateStringNotNullNorEmpty(context, value),
       itemBuilder: (context, Manufacturer? suggestion) => ListTile(
         title: Text(suggestion?.name ?? ""),
       ),
       onSuggestionSelected: (Manufacturer? suggestion) {
         _manufacturerEditingController.text = suggestion?.name ?? "";
-        onSuggestionSelectedCombineName();
+        combineNewNameIfPossible();
       },
       suggestionsCallback: (query) async {
         return await BlocProvider.of<WeaponCubit>(context).getManufacturers(query);
@@ -165,15 +170,22 @@ class _WeaponPageState extends State<WeaponPageWidget> {
         maxLength: Common.maxWeaponModelLength,
         decoration: InputDecoration(
           labelText: AppLocalizations.of(context)!.weaponModelField,
+          suffixIcon: buildClearButton(context, () => _modelEditingController.clear())
         ),
+        onChanged: (text) {
+          combineNewNameIfPossible();
+        },
       ),
+      hideOnEmpty: true,
+      hideOnError: true,
+      hideOnLoading: true,
       validator: (value) => validateStringNotNullNorEmpty(context, value),
       itemBuilder: (context, Model? suggestion) => ListTile(
         title: Text(suggestion?.name ?? ""),
       ),
       onSuggestionSelected: (Model? suggestion) {
         _modelEditingController.text = suggestion?.name ?? "";
-        onSuggestionSelectedCombineName();
+        combineNewNameIfPossible();
       },
       suggestionsCallback: (query) async {
         return await BlocProvider.of<WeaponCubit>(context).getModels(query);
@@ -192,8 +204,15 @@ class _WeaponPageState extends State<WeaponPageWidget> {
         maxLength: Common.maxWeaponGaugeLength,
         decoration: InputDecoration(
           labelText: AppLocalizations.of(context)!.weaponGaugeField,
+          suffixIcon: buildClearButton(context, () => _gaugeEditingController.clear())
         ),
+        onChanged: (text) {
+          combineNewNameIfPossible();
+        },
       ),
+      hideOnEmpty: true,
+      hideOnError: true,
+      hideOnLoading: true,
       validator: (value) => validateStringNotNullNorEmpty(context, value),
       itemBuilder: (context, Gauge? suggestion) =>
           ListTile(
@@ -201,7 +220,7 @@ class _WeaponPageState extends State<WeaponPageWidget> {
           ),
       onSuggestionSelected: (Gauge? suggestion) {
         _gaugeEditingController.text = suggestion?.name ?? "";
-        onSuggestionSelectedCombineName();
+        combineNewNameIfPossible();
       },
       suggestionsCallback: (query) async {
         return await BlocProvider.of<WeaponCubit>(context).getGauges(query);
@@ -261,12 +280,8 @@ class _WeaponPageState extends State<WeaponPageWidget> {
     Navigator.of(context).pop();
   }
 
-  void onSuggestionSelectedCombineName() {
-    var name = _nameEditingController.text;
-    if (name.isNotEmpty) {
-      return;
-    }
-
+  void combineNewNameIfPossible() {
+    var name = _nameEditingController.text.trim();
     var manufacturer = _manufacturerEditingController.text;
     var model = _modelEditingController.text;
     var gauge = _gaugeEditingController.text;
@@ -279,6 +294,11 @@ class _WeaponPageState extends State<WeaponPageWidget> {
       model = "$model ";
     }
 
-    _nameEditingController.text = "$manufacturer$model$gauge";
+    var proposedName = "$manufacturer$model$gauge".trim();
+    if (name.isEmpty
+        || proposedName.startsWith(name)
+        || name.startsWith(proposedName)) {
+      _nameEditingController.text = proposedName;
+    }
   }
 }
