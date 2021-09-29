@@ -65,28 +65,17 @@ class _WeaponPageState extends State<WeaponPageWidget> {
               horizontal: Dimens.baseMargin,
               vertical: Dimens.baseMargin),
             child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    autofocus: state is Empty,
-                    initialValue: state is Success
-                      ? state.weapon.name
-                      : '',
-                    maxLength: Common.maxWeaponNameLength,
-                    validator: (value) => validateStringNotNullNorEmpty(context, value),
-                    controller: _nameEditingController,
-                    decoration: InputDecoration(
-                      labelText: AppLocalizations.of(context)!.weaponNameField,
-                    )
-                  ),
-                  // buildManufacturerWidget(context),
-                  // buildModelWidget(context),
-                  // buildGaugeWidget(context),
-                ],
-              )
-            ),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    buildNameWidget(context, state),
+                    buildManufacturerWidget(context, state),
+                    buildModelWidget(context, state),
+                    buildGaugeWidget(context, state),
+                  ],
+                )
+              ),
             )
           )
         )
@@ -119,10 +108,34 @@ class _WeaponPageState extends State<WeaponPageWidget> {
     return <Widget>[];
   }
 
-  Widget buildManufacturerWidget(BuildContext context) {
+  Widget buildNameWidget(BuildContext context, WeaponState state) {
+    _nameEditingController.text = state is Success
+        ? state.weapon.name
+        : "";
+
+    return TextFormField(
+        autofocus: state is Empty,
+        initialValue: state is Success
+            ? state.weapon.name
+            : '',
+        maxLength: Common.maxWeaponNameLength,
+        validator: (value) => validateStringNotNullNorEmpty(context, value),
+        controller: _nameEditingController,
+        decoration: InputDecoration(
+          labelText: AppLocalizations.of(context)!.weaponNameField,
+        )
+    );
+  }
+
+  Widget buildManufacturerWidget(BuildContext context, WeaponState state) {
+    _manufacturerEditingController.text = state is Success
+        ? state.weapon.manufacturer.name
+        : "";
+
     return TypeAheadFormField<Manufacturer?> (
       textFieldConfiguration: TextFieldConfiguration(
         controller: _manufacturerEditingController,
+        maxLength: Common.maxWeaponManufacturerLength,
         decoration: InputDecoration(
           labelText: AppLocalizations.of(context)!.weaponManufacturerField,
         ),
@@ -141,10 +154,15 @@ class _WeaponPageState extends State<WeaponPageWidget> {
     );
   }
 
-  Widget buildModelWidget(BuildContext context) {
+  Widget buildModelWidget(BuildContext context, WeaponState state) {
+    _modelEditingController.text = state is Success
+        ? state.weapon.model.name
+        : "";
+
     return TypeAheadFormField<Model?> (
       textFieldConfiguration: TextFieldConfiguration(
         controller: _modelEditingController,
+        maxLength: Common.maxWeaponModelLength,
         decoration: InputDecoration(
           labelText: AppLocalizations.of(context)!.weaponModelField,
         ),
@@ -163,10 +181,15 @@ class _WeaponPageState extends State<WeaponPageWidget> {
     );
   }
 
-  Widget buildGaugeWidget(BuildContext context) {
+  Widget buildGaugeWidget(BuildContext context, WeaponState state) {
+    _gaugeEditingController.text = state is Success
+        ? state.weapon.gauge.name
+        : "";
+
     return TypeAheadFormField<Gauge?>(
       textFieldConfiguration: TextFieldConfiguration(
         controller: _gaugeEditingController,
+        maxLength: Common.maxWeaponGaugeLength,
         decoration: InputDecoration(
           labelText: AppLocalizations.of(context)!.weaponGaugeField,
         ),
