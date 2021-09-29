@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:shootingtrack/common.dart';
+import 'package:shootingtrack/data/data.dart';
 import 'package:shootingtrack/data/entities/weapon.dart';
 import 'package:shootingtrack/di/di.dart';
 import 'package:shootingtrack/dimens.dart';
@@ -80,43 +81,9 @@ class _WeaponPageState extends State<WeaponPageWidget> {
                       labelText: AppLocalizations.of(context)!.weaponNameField,
                     )
                   ),
-                  TextFormField(
-                      initialValue: state is Success
-                        ? state.weapon.model.name
-                        : '',
-                      maxLength: Common.maxWeaponModelLength,
-                      validator: (value) => validateStringNotNullNorEmpty(context, value),
-                      controller: _modelEditingController,
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.weaponModelField,
-                      )
-                  ),
-                  TypeAheadField(
-                    textFieldConfiguration: TextFieldConfiguration(
-                        autofocus: true,
-                        style: DefaultTextStyle.of(context).style.copyWith(
-                            fontStyle: FontStyle.italic
-                        ),
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder()
-                        ),
-                    ),
-                    suggestionsCallback: (pattern) async {
-                      return await BackendService.getSuggestions(pattern);
-                    },
-                    itemBuilder: (context, suggestion) {
-                      return ListTile(
-                        leading: Icon(Icons.shopping_cart),
-                        title: Text(suggestion['name']),
-                        subtitle: Text('\$${suggestion['price']}'),
-                      );
-                    },
-                    onSuggestionSelected: (suggestion) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ProductPage(product: suggestion)
-                      ));
-                    },
-                  )
+                  buildManufacturersAutocomplete(context),
+                  buildModelAutocomplete(context),
+                  buildGaugeAutocomplete(context),
                 ],
               )
             ),
@@ -128,7 +95,9 @@ class _WeaponPageState extends State<WeaponPageWidget> {
   @override
   void dispose() {
     _nameEditingController.dispose();
+    _manufacturerEditingController.dispose();
     _modelEditingController.dispose();
+    _gaugeEditingController.dispose();
 
     super.dispose();
   }
@@ -150,6 +119,73 @@ class _WeaponPageState extends State<WeaponPageWidget> {
     return <Widget>[];
   }
 
+  Widget buildManufacturersAutocomplete(BuildContext context) {
+    return TypeAheadFormField<Manufacturer?> (
+      textFieldConfiguration: TextFieldConfiguration(
+        controller: _manufacturerEditingController,
+        decoration: InputDecoration(
+          labelText: AppLocalizations.of(context)!.weaponManufacturerField,
+        ),
+      ),
+      validator: (value) => validateStringNotNullNorEmpty(context, value),
+      itemBuilder: (context, Manufacturer? suggestion) => ListTile(
+        title: Text(suggestion?.name ?? ""),
+      ),
+      onSuggestionSelected: (Manufacturer? suggestion) {
+        _manufacturerEditingController.text = suggestion?.name ?? "";
+        onSuggestionSelectedCombineName();
+      },
+      suggestionsCallback: (query) async {
+        return await BlocProvider.of<WeaponCubit>(context).getManufacturers(query);
+      },
+    );
+  }
+
+  Widget buildModelAutocomplete(BuildContext context) {
+    return TypeAheadFormField<Model?> (
+      textFieldConfiguration: TextFieldConfiguration(
+        controller: _modelEditingController,
+        decoration: InputDecoration(
+          labelText: AppLocalizations.of(context)!.weaponModelField,
+        ),
+      ),
+      validator: (value) => validateStringNotNullNorEmpty(context, value),
+      itemBuilder: (context, Model? suggestion) => ListTile(
+        title: Text(suggestion?.name ?? ""),
+      ),
+      onSuggestionSelected: (Model? suggestion) {
+        _modelEditingController.text = suggestion?.name ?? "";
+        onSuggestionSelectedCombineName();
+      },
+      suggestionsCallback: (query) async {
+        return await BlocProvider.of<WeaponCubit>(context).getModels(query);
+      },
+    );
+  }
+
+  Widget buildGaugeAutocomplete(BuildContext context) {
+    return TypeAheadFormField<Gauge?>(
+      textFieldConfiguration: TextFieldConfiguration(
+        controller: _gaugeEditingController,
+        decoration: InputDecoration(
+          labelText: AppLocalizations.of(context)!.weaponGaugeField,
+        ),
+      ),
+      validator: (value) => validateStringNotNullNorEmpty(context, value),
+      itemBuilder: (context, Gauge? suggestion) =>
+          ListTile(
+            title: Text(suggestion?.name ?? ""),
+          ),
+      onSuggestionSelected: (Gauge? suggestion) {
+        _gaugeEditingController.text = suggestion?.name ?? "";
+        onSuggestionSelectedCombineName();
+      },
+      suggestionsCallback: (query) async {
+        return await BlocProvider.of<WeaponCubit>(context).getGauges(query);
+      },
+    );
+  }
+
   void cancelChanges() {
     Navigator.of(context).pop();
   }
@@ -161,17 +197,17 @@ class _WeaponPageState extends State<WeaponPageWidget> {
 
     if (weapon == null) {
       BlocProvider.of<WeaponCubit>(context).createWeapon(
-          _nameEditingController.value.text,
-          _manufacturerEditingController.value.text,
-          _modelEditingController.value.text,
-          _gaugeEditingController.value.text);
+          _nameEditingController.text,
+          _manufacturerEditingController.text,
+          _modelEditingController.text,
+          _gaugeEditingController.text);
     } else {
       BlocProvider.of<WeaponCubit>(context).updateWeapon(
           weapon.id,
-          _nameEditingController.value.text,
-          _manufacturerEditingController.value.text,
-          _modelEditingController.value.text,
-          _gaugeEditingController.value.text);
+          _nameEditingController.text,
+          _manufacturerEditingController.text,
+          _modelEditingController.text,
+          _gaugeEditingController.text);
     }
 
     Navigator.of(context).pop();
@@ -200,5 +236,26 @@ class _WeaponPageState extends State<WeaponPageWidget> {
 
   void deleteWeaponConfirmed(Weapon weapon) {
     Navigator.of(context).pop();
+  }
+
+  void onSuggestionSelectedCombineName() {
+    var name = _nameEditingController.text;
+    if (name.isNotEmpty) {
+      return;
+    }
+
+    var manufacturer = _manufacturerEditingController.text;
+    var model = _modelEditingController.text;
+    var gauge = _gaugeEditingController.text;
+
+    if (manufacturer.isNotEmpty) {
+      manufacturer = "$manufacturer ";
+    }
+
+    if (model.isNotEmpty) {
+      model = "$model ";
+    }
+
+    _nameEditingController.text = "$manufacturer$model$gauge";
   }
 }

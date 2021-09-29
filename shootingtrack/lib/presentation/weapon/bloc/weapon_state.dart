@@ -17,8 +17,5 @@ class WeaponState with _$WeaponState implements BaseState {
 
   const factory WeaponState.success({
     required Weapon weapon,
-    required List<Manufacturer> manufacturers,
-    required List<Model> models,
-    required List<Gauge> gauges,
   }) = Success;
 }

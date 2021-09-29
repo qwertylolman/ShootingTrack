@@ -18,18 +18,16 @@ class WeaponCubit extends Cubit<WeaponState> {
 
   Future<void> onInit(String? weaponId) async {
     emit(const WeaponState.loading());
+    var manufacturers = await manufacturersRepository.readAll();
+    var models = await modelsRepository.readAll();
+    var gauges = await gaugesRepository.readAll();
     var weapon = await weaponsRepository.read(weaponId);
     if (weapon == null) {
       emit(const WeaponState.empty());
     } else {
-      var manufacturers = await manufacturersRepository.readAll();
-      var models = await modelsRepository.readAll();
-      var gauges = await gaugesRepository.readAll();
       emit(WeaponState.success(
           weapon: weapon,
-          manufacturers: manufacturers.toList(),
-          models: models.toList(),
-          gauges: gauges.toList()));
+      ));
     }
   }
 
@@ -72,6 +70,15 @@ class WeaponCubit extends Cubit<WeaponState> {
     weaponsRepository.delete(id);
   }
 
+  Future<Iterable<Manufacturer>> getManufacturers(String query) async {
+    var manufacturers = await manufacturersRepository.readAll();
+    if (query.isEmpty) {
+      return manufacturers;
+    }
+
+    return manufacturers.where((e) => e.name.contains(query));
+  }
+
   Future<Manufacturer> getManufacturer(String name) async {
     var manufacturer = await manufacturersRepository.getByName(name)
         ?? await manufacturersRepository.createManufacturer(name);
@@ -86,6 +93,15 @@ class WeaponCubit extends Cubit<WeaponState> {
     return manufacturer;
   }
 
+  Future<Iterable<Model>> getModels(String query) async {
+    var models = await modelsRepository.readAll();
+    if (query.isEmpty) {
+      return models;
+    }
+
+    return models.where((e) => e.name.contains(query));
+  }
+
   Future<Model> getModel(String name) async {
     var model = await modelsRepository.getByName(name)
         ?? await modelsRepository.createManufacturer(name);
@@ -98,6 +114,15 @@ class WeaponCubit extends Cubit<WeaponState> {
     }
 
     return model;
+  }
+
+  Future<Iterable<Gauge>> getGauges(String query) async {
+    var gauges = await gaugesRepository.readAll();
+    if (query.isEmpty) {
+      return gauges;
+    }
+
+    return gauges.where((e) => e.name.contains(query));
   }
 
   Future<Gauge> getGauge(String name) async {

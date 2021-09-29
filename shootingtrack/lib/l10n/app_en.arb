@@ -14,7 +14,9 @@
     "addWeaponTitle": "Add weapon",
     "editWeaponTitle": "Edit weapon",
     "weaponNameField": "Weapon name",
+    "weaponManufacturerField": "Manufacturer",
     "weaponModelField": "Model",
+    "weaponGaugeField": "Gauge",
 
     "localizationEmptyOrNullString": "Cannot be empty.",
 

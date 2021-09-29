@@ -35,16 +35,9 @@ class _$WeaponStateTearOff {
     return const Empty();
   }
 
-  Success success(
-      {required Weapon weapon,
-      required List<Manufacturer> manufacturers,
-      required List<Model> models,
-      required List<Gauge> gauges}) {
+  Success success({required Weapon weapon}) {
     return Success(
       weapon: weapon,
-      manufacturers: manufacturers,
-      models: models,
-      gauges: gauges,
     );
   }
 }
@@ -60,9 +53,7 @@ mixin _$WeaponState {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)
-        success,
+    required TResult Function(Weapon weapon) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,9 +62,7 @@ mixin _$WeaponState {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,9 +71,7 @@ mixin _$WeaponState {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -175,9 +162,7 @@ class _$Initial extends Initial {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)
-        success,
+    required TResult Function(Weapon weapon) success,
   }) {
     return initial();
   }
@@ -189,9 +174,7 @@ class _$Initial extends Initial {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
   }) {
     return initial?.call();
   }
@@ -203,9 +186,7 @@ class _$Initial extends Initial {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -302,9 +283,7 @@ class _$Loading extends Loading {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)
-        success,
+    required TResult Function(Weapon weapon) success,
   }) {
     return loading();
   }
@@ -316,9 +295,7 @@ class _$Loading extends Loading {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
   }) {
     return loading?.call();
   }
@@ -330,9 +307,7 @@ class _$Loading extends Loading {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -454,9 +429,7 @@ class _$Error extends Error {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)
-        success,
+    required TResult Function(Weapon weapon) success,
   }) {
     return error(this.error);
   }
@@ -468,9 +441,7 @@ class _$Error extends Error {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
   }) {
     return error?.call(this.error);
   }
@@ -482,9 +453,7 @@ class _$Error extends Error {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -585,9 +554,7 @@ class _$Empty extends Empty {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)
-        success,
+    required TResult Function(Weapon weapon) success,
   }) {
     return empty();
   }
@@ -599,9 +566,7 @@ class _$Empty extends Empty {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
   }) {
     return empty?.call();
   }
@@ -613,9 +578,7 @@ class _$Empty extends Empty {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -674,11 +637,7 @@ abstract class Empty extends WeaponState implements EmptyState {
 abstract class $SuccessCopyWith<$Res> {
   factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
       _$SuccessCopyWithImpl<$Res>;
-  $Res call(
-      {Weapon weapon,
-      List<Manufacturer> manufacturers,
-      List<Model> models,
-      List<Gauge> gauges});
+  $Res call({Weapon weapon});
 }
 
 /// @nodoc
@@ -693,27 +652,12 @@ class _$SuccessCopyWithImpl<$Res> extends _$WeaponStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? weapon = freezed,
-    Object? manufacturers = freezed,
-    Object? models = freezed,
-    Object? gauges = freezed,
   }) {
     return _then(Success(
       weapon: weapon == freezed
           ? _value.weapon
           : weapon // ignore: cast_nullable_to_non_nullable
               as Weapon,
-      manufacturers: manufacturers == freezed
-          ? _value.manufacturers
-          : manufacturers // ignore: cast_nullable_to_non_nullable
-              as List<Manufacturer>,
-      models: models == freezed
-          ? _value.models
-          : models // ignore: cast_nullable_to_non_nullable
-              as List<Model>,
-      gauges: gauges == freezed
-          ? _value.gauges
-          : gauges // ignore: cast_nullable_to_non_nullable
-              as List<Gauge>,
     ));
   }
 }
@@ -721,25 +665,14 @@ class _$SuccessCopyWithImpl<$Res> extends _$WeaponStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Success extends Success {
-  const _$Success(
-      {required this.weapon,
-      required this.manufacturers,
-      required this.models,
-      required this.gauges})
-      : super._();
+  const _$Success({required this.weapon}) : super._();
 
   @override
   final Weapon weapon;
-  @override
-  final List<Manufacturer> manufacturers;
-  @override
-  final List<Model> models;
-  @override
-  final List<Gauge> gauges;
 
   @override
   String toString() {
-    return 'WeaponState.success(weapon: $weapon, manufacturers: $manufacturers, models: $models, gauges: $gauges)';
+    return 'WeaponState.success(weapon: $weapon)';
   }
 
   @override
@@ -747,23 +680,12 @@ class _$Success extends Success {
     return identical(this, other) ||
         (other is Success &&
             (identical(other.weapon, weapon) ||
-                const DeepCollectionEquality().equals(other.weapon, weapon)) &&
-            (identical(other.manufacturers, manufacturers) ||
-                const DeepCollectionEquality()
-                    .equals(other.manufacturers, manufacturers)) &&
-            (identical(other.models, models) ||
-                const DeepCollectionEquality().equals(other.models, models)) &&
-            (identical(other.gauges, gauges) ||
-                const DeepCollectionEquality().equals(other.gauges, gauges)));
+                const DeepCollectionEquality().equals(other.weapon, weapon)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(weapon) ^
-      const DeepCollectionEquality().hash(manufacturers) ^
-      const DeepCollectionEquality().hash(models) ^
-      const DeepCollectionEquality().hash(gauges);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(weapon);
 
   @JsonKey(ignore: true)
   @override
@@ -777,11 +699,9 @@ class _$Success extends Success {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)
-        success,
+    required TResult Function(Weapon weapon) success,
   }) {
-    return success(weapon, manufacturers, models, gauges);
+    return success(weapon);
   }
 
   @override
@@ -791,11 +711,9 @@ class _$Success extends Success {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
   }) {
-    return success?.call(weapon, manufacturers, models, gauges);
+    return success?.call(weapon);
   }
 
   @override
@@ -805,13 +723,11 @@ class _$Success extends Success {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon, List<Manufacturer> manufacturers,
-            List<Model> models, List<Gauge> gauges)?
-        success,
+    TResult Function(Weapon weapon)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(weapon, manufacturers, models, gauges);
+      return success(weapon);
     }
     return orElse();
   }
@@ -858,17 +774,10 @@ class _$Success extends Success {
 }
 
 abstract class Success extends WeaponState {
-  const factory Success(
-      {required Weapon weapon,
-      required List<Manufacturer> manufacturers,
-      required List<Model> models,
-      required List<Gauge> gauges}) = _$Success;
+  const factory Success({required Weapon weapon}) = _$Success;
   const Success._() : super._();
 
   Weapon get weapon => throw _privateConstructorUsedError;
-  List<Manufacturer> get manufacturers => throw _privateConstructorUsedError;
-  List<Model> get models => throw _privateConstructorUsedError;
-  List<Gauge> get gauges => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SuccessCopyWith<Success> get copyWith => throw _privateConstructorUsedError;
 }
