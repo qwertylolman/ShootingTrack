@@ -6,10 +6,9 @@ import 'package:shootingtrack/domain/db.dart';
 import 'package:shootingtrack/domain/repositories/crud_repository.dart';
 
 class WeaponsRepository extends CrudRepository<Weapon> {
-  Future<Iterable<Weapon>> getAllWeapons() async {
-    var box = await DB.box<Weapon>();
-
-    return box.values;
+  @override
+  String boxName() {
+    return "weapon";
   }
 
   Future<Weapon> createWeapon(

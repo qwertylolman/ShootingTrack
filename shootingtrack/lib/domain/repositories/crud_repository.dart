@@ -1,9 +1,11 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shootingtrack/domain/db.dart';
 
-class CrudRepository<T> {
+abstract class CrudRepository<T> {
+  String boxName();
+
   Future<Box<T>> box() {
-    return DB.box<T>();
+    return DB.box<T>(boxName());
   }
 
   Future<T> create(String key, T entity) async {

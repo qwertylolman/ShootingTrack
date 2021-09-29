@@ -6,6 +6,11 @@ import 'package:shootingtrack/domain/repositories/crud_repository.dart';
 import '../../common.dart';
 
 class ManufacturersRepository extends CrudRepository<Manufacturer> {
+  @override
+  String boxName() {
+    return "manufacturer";
+  }
+
   Future<Manufacturer> createManufacturer(
       String name) async {
     var manufacturer = Manufacturer(id: DB.generateId(), name: name);

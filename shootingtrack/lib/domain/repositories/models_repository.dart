@@ -6,6 +6,11 @@ import 'package:shootingtrack/domain/repositories/crud_repository.dart';
 import '../../common.dart';
 
 class ModelsRepository extends CrudRepository<Model> {
+  @override
+  String boxName() {
+    return "model";
+  }
+
   Future<Model> createManufacturer(
       String name) async {
     var model = Model(id: DB.generateId(), name: name);

@@ -1,6 +1,4 @@
 class Common {
-  static const String defaultBoxName = "DefaultBox";
-
   static const int maxWeaponNameLength = 50;
   static const int maxWeaponModelLength = 50;
 }

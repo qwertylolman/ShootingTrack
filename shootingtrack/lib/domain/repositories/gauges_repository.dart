@@ -4,6 +4,11 @@ import 'package:shootingtrack/data/entities/entities.dart';
 import 'package:shootingtrack/domain/domain.dart';
 
 class GaugesRepository extends CrudRepository<Gauge> {
+  @override
+  String boxName() {
+    return "gauge";
+  }
+
   Future<Gauge> createGauge(
       String name
     ) async {

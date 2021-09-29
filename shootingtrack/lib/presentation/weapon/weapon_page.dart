@@ -81,9 +81,9 @@ class _WeaponPageState extends State<WeaponPageWidget> {
                       labelText: AppLocalizations.of(context)!.weaponNameField,
                     )
                   ),
-                  buildManufacturerWidget(context),
-                  buildModelWidget(context),
-                  buildGaugeWidget(context),
+                  // buildManufacturerWidget(context),
+                  // buildModelWidget(context),
+                  // buildGaugeWidget(context),
                 ],
               )
             ),
