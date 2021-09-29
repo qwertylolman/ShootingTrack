@@ -24,7 +24,9 @@ class _WeaponsListPageState extends State<WeaponsListPage> {
       child: const Icon(Icons.add),
       onPressed: () => Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => WeaponPage(),
-      )),
+      )).then((updatedWeapon) {
+      // Do something with new weapon
+      }),
     ),
   );
 }
