@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shootingtrack/di/di.dart';
-import 'package:shootingtrack/presentation/weapons_list/weapons_list_page.dart';
+import 'package:shootingtrack/presentation/weapons_list/weapon_list_page.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light
         ),
       ),
-      home: const WeaponsListPage(),
+      home: const WeaponListPage(),
     );
   }
 }

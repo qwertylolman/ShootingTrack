@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shootingtrack/dimens.dart';
-import 'package:shootingtrack/presentation/weapons_list/weapons_list_page.dart';
+import 'package:shootingtrack/presentation/weapons_list/weapon_list_page.dart';
 
 class MainNavigationDrawer extends StatelessWidget {
   const MainNavigationDrawer({Key? key}) : super(key: key);
@@ -46,7 +46,7 @@ class MainNavigationDrawer extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => WeaponsListPage(),
+          builder: (context) => const WeaponListPage(),
         ));
         break;
     }
