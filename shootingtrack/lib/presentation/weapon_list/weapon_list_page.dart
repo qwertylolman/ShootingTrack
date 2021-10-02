@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shootingtrack/di/di.dart';
 import 'package:shootingtrack/presentation/main_navigation_drawer.dart';
 import 'package:shootingtrack/presentation/weapon/weapon_page.dart';
-import 'package:shootingtrack/presentation/weapons_list/widgets/weapon_list.dart';
+import 'package:shootingtrack/presentation/weapon_list/widgets/weapon_list.dart';
 
 import 'bloc/weapon_list_cubit.dart';
 import 'bloc/weapon_list_state.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shootingtrack/data/data.dart';
 import 'package:shootingtrack/presentation/common/base_state.dart';
-import 'package:shootingtrack/presentation/weapons_list/widgets/weapon_item.dart';
+import 'package:shootingtrack/presentation/weapon_list/widgets/weapon_item.dart';
 import 'package:shootingtrack/presentation/widgets/state_builder.dart';
 
 class WeaponList<T> extends StatelessWidget {

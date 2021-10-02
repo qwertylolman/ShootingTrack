@@ -13,6 +13,11 @@ class ErrorScreen extends StatelessWidget {
     subtitle: AppLocalizations.of(context)!.noInternetSubtitle,
   );
 
+  factory ErrorScreen.empty(BuildContext context) => ErrorScreen(
+    title: AppLocalizations.of(context)!.feedEmptyErrorTitle,
+    subtitle: AppLocalizations.of(context)!.feedEmptyErrorSubtitle,
+  );
+
   final String title;
   final String subtitle;
 

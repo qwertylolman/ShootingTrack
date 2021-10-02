@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shootingtrack/domain/domain.dart';
-import 'package:shootingtrack/presentation/weapons_list/bloc/weapon_list_state.dart';
+import 'package:shootingtrack/presentation/weapon_list/bloc/weapon_list_state.dart';
 
 class WeaponListCubit extends Cubit<WeaponListState> {
   WeaponListCubit({

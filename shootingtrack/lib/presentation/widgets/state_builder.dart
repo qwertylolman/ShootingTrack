@@ -29,10 +29,7 @@ class StateBuilder<T> extends StatelessWidget {
       return loading ?? const Center(child: CircularProgressIndicator());
     } else if (state is EmptyState) {
       return empty?.call() ??
-          ErrorScreen(
-            title: AppLocalizations.of(context)!.feedEmptyErrorTitle,
-            subtitle: AppLocalizations.of(context)!.feedEmptyErrorSubtitle,
-          );
+          ErrorScreen.empty(context);
     } else {
       return data(state as T);
     }
