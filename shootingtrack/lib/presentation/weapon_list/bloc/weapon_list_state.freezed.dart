@@ -140,8 +140,8 @@ class _$InitialCopyWithImpl<$Res> extends _$WeaponListStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Initial implements Initial {
-  const _$Initial();
+class _$Initial extends Initial {
+  const _$Initial() : super._();
 
   @override
   String toString() {
@@ -237,8 +237,9 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements WeaponListState {
+abstract class Initial extends WeaponListState {
   const factory Initial() = _$Initial;
+  const Initial._() : super._();
 }
 
 /// @nodoc
@@ -260,8 +261,8 @@ class _$LoadingCopyWithImpl<$Res> extends _$WeaponListStateCopyWithImpl<$Res>
 /// @nodoc
 
 @Implements(LoadingState)
-class _$Loading implements Loading {
-  const _$Loading();
+class _$Loading extends Loading {
+  const _$Loading() : super._();
 
   @override
   String toString() {
@@ -357,8 +358,9 @@ class _$Loading implements Loading {
   }
 }
 
-abstract class Loading implements WeaponListState, LoadingState {
+abstract class Loading extends WeaponListState implements LoadingState {
   const factory Loading() = _$Loading;
+  const Loading._() : super._();
 }
 
 /// @nodoc
@@ -393,8 +395,8 @@ class _$ErrorCopyWithImpl<$Res> extends _$WeaponListStateCopyWithImpl<$Res>
 /// @nodoc
 
 @Implements(ErrorState)
-class _$Error implements Error {
-  const _$Error(this.error);
+class _$Error extends Error {
+  const _$Error(this.error) : super._();
 
   @override
   final Object error;
@@ -502,8 +504,9 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements WeaponListState, ErrorState {
+abstract class Error extends WeaponListState implements ErrorState {
   const factory Error(Object error) = _$Error;
+  const Error._() : super._();
 
   Object get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -529,8 +532,8 @@ class _$EmptyCopyWithImpl<$Res> extends _$WeaponListStateCopyWithImpl<$Res>
 /// @nodoc
 
 @Implements(EmptyState)
-class _$Empty implements Empty {
-  const _$Empty();
+class _$Empty extends Empty {
+  const _$Empty() : super._();
 
   @override
   String toString() {
@@ -626,8 +629,9 @@ class _$Empty implements Empty {
   }
 }
 
-abstract class Empty implements WeaponListState, EmptyState {
+abstract class Empty extends WeaponListState implements EmptyState {
   const factory Empty() = _$Empty;
+  const Empty._() : super._();
 }
 
 /// @nodoc
@@ -661,8 +665,9 @@ class _$SuccessCopyWithImpl<$Res> extends _$WeaponListStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Success implements Success {
-  const _$Success({required this.weapons});
+@Implements(SuccessFeedState)
+class _$Success extends Success {
+  const _$Success({required this.weapons}) : super._();
 
   @override
   final List<Weapon> weapons;
@@ -770,8 +775,9 @@ class _$Success implements Success {
   }
 }
 
-abstract class Success implements WeaponListState {
+abstract class Success extends WeaponListState implements SuccessFeedState {
   const factory Success({required List<Weapon> weapons}) = _$Success;
+  const Success._() : super._();
 
   List<Weapon> get weapons => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)

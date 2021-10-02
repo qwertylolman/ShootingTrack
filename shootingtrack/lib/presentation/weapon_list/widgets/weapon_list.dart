@@ -14,11 +14,9 @@ class WeaponList<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: StateBuilder<T>(
-        state,
-        data: (T data) => _buildFeed(data as SuccessFeedState),
-      ),
+    return StateBuilder<T>(
+      state,
+      data: (T data) => _buildFeed(data as SuccessFeedState),
     );
   }
 
