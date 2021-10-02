@@ -61,9 +61,7 @@ class _WeaponPageState extends State<WeaponPageWidget> {
             actions: buildAppBarMenuIcons(context, state),
           ),
           body: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: Dimens.baseMargin,
-              vertical: Dimens.baseMargin),
+            padding: const EdgeInsets.all(Dimens.baseMargin),
             child: SingleChildScrollView(
               child: Form(
                 key: _formKey,

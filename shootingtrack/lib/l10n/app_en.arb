@@ -22,5 +22,14 @@
     "localizationEmptyOrNullString": "Cannot be empty.",
 
     "areYouSure": "Are you sure?",
-    "destructiveActionDescription": "This action cannot be undone."
+    "destructiveActionDescription": "This action cannot be undone.",
+
+    "noInternetTitle": "Internet connection",
+    "noInternetSubtitle": "Looks like connection is missed, check your network.",
+
+    "unknownErrorTitle": "¯\\_(ツ)_/¯",
+    "unknownErrorSubtitle": "Wea have faced an unknown error.",
+
+    "feedEmptyErrorTitle": "(ノಠ益ಠ)ノ彡┻━┻",
+    "feedEmptyErrorSubtitle": "There are no items to display."
 }
