@@ -6,7 +6,6 @@ part 'weapon_state.freezed.dart';
 
 @freezed
 class WeaponState with _$WeaponState implements BaseState {
-  const WeaponState._();
   const factory WeaponState.initial() = Initial;
   @Implements(LoadingState)
   const factory WeaponState.loading() = Loading;

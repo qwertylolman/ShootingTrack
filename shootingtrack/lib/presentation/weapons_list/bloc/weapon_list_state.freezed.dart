@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'weapon_state.dart';
+part of 'weapon_list_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,8 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$WeaponStateTearOff {
-  const _$WeaponStateTearOff();
+class _$WeaponListStateTearOff {
+  const _$WeaponListStateTearOff();
 
   Initial initial() {
     return const Initial();
@@ -35,25 +35,25 @@ class _$WeaponStateTearOff {
     return const Empty();
   }
 
-  Success success({required Weapon weapon}) {
+  Success success({required List<Weapon> weapons}) {
     return Success(
-      weapon: weapon,
+      weapons: weapons,
     );
   }
 }
 
 /// @nodoc
-const $WeaponState = _$WeaponStateTearOff();
+const $WeaponListState = _$WeaponListStateTearOff();
 
 /// @nodoc
-mixin _$WeaponState {
+mixin _$WeaponListState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon) success,
+    required TResult Function(List<Weapon> weapons) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +62,7 @@ mixin _$WeaponState {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,7 +71,7 @@ mixin _$WeaponState {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,19 +106,20 @@ mixin _$WeaponState {
 }
 
 /// @nodoc
-abstract class $WeaponStateCopyWith<$Res> {
-  factory $WeaponStateCopyWith(
-          WeaponState value, $Res Function(WeaponState) then) =
-      _$WeaponStateCopyWithImpl<$Res>;
+abstract class $WeaponListStateCopyWith<$Res> {
+  factory $WeaponListStateCopyWith(
+          WeaponListState value, $Res Function(WeaponListState) then) =
+      _$WeaponListStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WeaponStateCopyWithImpl<$Res> implements $WeaponStateCopyWith<$Res> {
-  _$WeaponStateCopyWithImpl(this._value, this._then);
+class _$WeaponListStateCopyWithImpl<$Res>
+    implements $WeaponListStateCopyWith<$Res> {
+  _$WeaponListStateCopyWithImpl(this._value, this._then);
 
-  final WeaponState _value;
+  final WeaponListState _value;
   // ignore: unused_field
-  final $Res Function(WeaponState) _then;
+  final $Res Function(WeaponListState) _then;
 }
 
 /// @nodoc
@@ -128,7 +129,7 @@ abstract class $InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitialCopyWithImpl<$Res> extends _$WeaponStateCopyWithImpl<$Res>
+class _$InitialCopyWithImpl<$Res> extends _$WeaponListStateCopyWithImpl<$Res>
     implements $InitialCopyWith<$Res> {
   _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
       : super(_value, (v) => _then(v as Initial));
@@ -144,7 +145,7 @@ class _$Initial implements Initial {
 
   @override
   String toString() {
-    return 'WeaponState.initial()';
+    return 'WeaponListState.initial()';
   }
 
   @override
@@ -162,7 +163,7 @@ class _$Initial implements Initial {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon) success,
+    required TResult Function(List<Weapon> weapons) success,
   }) {
     return initial();
   }
@@ -174,7 +175,7 @@ class _$Initial implements Initial {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
   }) {
     return initial?.call();
   }
@@ -186,7 +187,7 @@ class _$Initial implements Initial {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -236,7 +237,7 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements WeaponState {
+abstract class Initial implements WeaponListState {
   const factory Initial() = _$Initial;
 }
 
@@ -247,7 +248,7 @@ abstract class $LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$WeaponStateCopyWithImpl<$Res>
+class _$LoadingCopyWithImpl<$Res> extends _$WeaponListStateCopyWithImpl<$Res>
     implements $LoadingCopyWith<$Res> {
   _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
       : super(_value, (v) => _then(v as Loading));
@@ -264,7 +265,7 @@ class _$Loading implements Loading {
 
   @override
   String toString() {
-    return 'WeaponState.loading()';
+    return 'WeaponListState.loading()';
   }
 
   @override
@@ -282,7 +283,7 @@ class _$Loading implements Loading {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon) success,
+    required TResult Function(List<Weapon> weapons) success,
   }) {
     return loading();
   }
@@ -294,7 +295,7 @@ class _$Loading implements Loading {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
   }) {
     return loading?.call();
   }
@@ -306,7 +307,7 @@ class _$Loading implements Loading {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -356,7 +357,7 @@ class _$Loading implements Loading {
   }
 }
 
-abstract class Loading implements WeaponState, LoadingState {
+abstract class Loading implements WeaponListState, LoadingState {
   const factory Loading() = _$Loading;
 }
 
@@ -368,7 +369,7 @@ abstract class $ErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ErrorCopyWithImpl<$Res> extends _$WeaponStateCopyWithImpl<$Res>
+class _$ErrorCopyWithImpl<$Res> extends _$WeaponListStateCopyWithImpl<$Res>
     implements $ErrorCopyWith<$Res> {
   _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
       : super(_value, (v) => _then(v as Error));
@@ -400,7 +401,7 @@ class _$Error implements Error {
 
   @override
   String toString() {
-    return 'WeaponState.error(error: $error)';
+    return 'WeaponListState.error(error: $error)';
   }
 
   @override
@@ -427,7 +428,7 @@ class _$Error implements Error {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon) success,
+    required TResult Function(List<Weapon> weapons) success,
   }) {
     return error(this.error);
   }
@@ -439,7 +440,7 @@ class _$Error implements Error {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
   }) {
     return error?.call(this.error);
   }
@@ -451,7 +452,7 @@ class _$Error implements Error {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -501,7 +502,7 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements WeaponState, ErrorState {
+abstract class Error implements WeaponListState, ErrorState {
   const factory Error(Object error) = _$Error;
 
   Object get error => throw _privateConstructorUsedError;
@@ -516,7 +517,7 @@ abstract class $EmptyCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EmptyCopyWithImpl<$Res> extends _$WeaponStateCopyWithImpl<$Res>
+class _$EmptyCopyWithImpl<$Res> extends _$WeaponListStateCopyWithImpl<$Res>
     implements $EmptyCopyWith<$Res> {
   _$EmptyCopyWithImpl(Empty _value, $Res Function(Empty) _then)
       : super(_value, (v) => _then(v as Empty));
@@ -533,7 +534,7 @@ class _$Empty implements Empty {
 
   @override
   String toString() {
-    return 'WeaponState.empty()';
+    return 'WeaponListState.empty()';
   }
 
   @override
@@ -551,7 +552,7 @@ class _$Empty implements Empty {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon) success,
+    required TResult Function(List<Weapon> weapons) success,
   }) {
     return empty();
   }
@@ -563,7 +564,7 @@ class _$Empty implements Empty {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
   }) {
     return empty?.call();
   }
@@ -575,7 +576,7 @@ class _$Empty implements Empty {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -625,7 +626,7 @@ class _$Empty implements Empty {
   }
 }
 
-abstract class Empty implements WeaponState, EmptyState {
+abstract class Empty implements WeaponListState, EmptyState {
   const factory Empty() = _$Empty;
 }
 
@@ -633,11 +634,11 @@ abstract class Empty implements WeaponState, EmptyState {
 abstract class $SuccessCopyWith<$Res> {
   factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
       _$SuccessCopyWithImpl<$Res>;
-  $Res call({Weapon weapon});
+  $Res call({List<Weapon> weapons});
 }
 
 /// @nodoc
-class _$SuccessCopyWithImpl<$Res> extends _$WeaponStateCopyWithImpl<$Res>
+class _$SuccessCopyWithImpl<$Res> extends _$WeaponListStateCopyWithImpl<$Res>
     implements $SuccessCopyWith<$Res> {
   _$SuccessCopyWithImpl(Success _value, $Res Function(Success) _then)
       : super(_value, (v) => _then(v as Success));
@@ -647,13 +648,13 @@ class _$SuccessCopyWithImpl<$Res> extends _$WeaponStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? weapon = freezed,
+    Object? weapons = freezed,
   }) {
     return _then(Success(
-      weapon: weapon == freezed
-          ? _value.weapon
-          : weapon // ignore: cast_nullable_to_non_nullable
-              as Weapon,
+      weapons: weapons == freezed
+          ? _value.weapons
+          : weapons // ignore: cast_nullable_to_non_nullable
+              as List<Weapon>,
     ));
   }
 }
@@ -661,27 +662,27 @@ class _$SuccessCopyWithImpl<$Res> extends _$WeaponStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Success implements Success {
-  const _$Success({required this.weapon});
+  const _$Success({required this.weapons});
 
   @override
-  final Weapon weapon;
+  final List<Weapon> weapons;
 
   @override
   String toString() {
-    return 'WeaponState.success(weapon: $weapon)';
+    return 'WeaponListState.success(weapons: $weapons)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Success &&
-            (identical(other.weapon, weapon) ||
-                const DeepCollectionEquality().equals(other.weapon, weapon)));
+            (identical(other.weapons, weapons) ||
+                const DeepCollectionEquality().equals(other.weapons, weapons)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(weapon);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(weapons);
 
   @JsonKey(ignore: true)
   @override
@@ -695,9 +696,9 @@ class _$Success implements Success {
     required TResult Function() loading,
     required TResult Function(Object error) error,
     required TResult Function() empty,
-    required TResult Function(Weapon weapon) success,
+    required TResult Function(List<Weapon> weapons) success,
   }) {
-    return success(weapon);
+    return success(weapons);
   }
 
   @override
@@ -707,9 +708,9 @@ class _$Success implements Success {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
   }) {
-    return success?.call(weapon);
+    return success?.call(weapons);
   }
 
   @override
@@ -719,11 +720,11 @@ class _$Success implements Success {
     TResult Function()? loading,
     TResult Function(Object error)? error,
     TResult Function()? empty,
-    TResult Function(Weapon weapon)? success,
+    TResult Function(List<Weapon> weapons)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(weapon);
+      return success(weapons);
     }
     return orElse();
   }
@@ -769,10 +770,10 @@ class _$Success implements Success {
   }
 }
 
-abstract class Success implements WeaponState {
-  const factory Success({required Weapon weapon}) = _$Success;
+abstract class Success implements WeaponListState {
+  const factory Success({required List<Weapon> weapons}) = _$Success;
 
-  Weapon get weapon => throw _privateConstructorUsedError;
+  List<Weapon> get weapons => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SuccessCopyWith<Success> get copyWith => throw _privateConstructorUsedError;
 }

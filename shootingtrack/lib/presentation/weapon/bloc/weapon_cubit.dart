@@ -18,9 +18,7 @@ class WeaponCubit extends Cubit<WeaponState> {
 
   Future<void> onInit(String? weaponId) async {
     emit(const WeaponState.loading());
-    var manufacturers = await manufacturersRepository.readAll();
-    var models = await modelsRepository.readAll();
-    var gauges = await gaugesRepository.readAll();
+
     var weapon = await weaponsRepository.read(weaponId);
     if (weapon == null) {
       emit(const WeaponState.empty());
