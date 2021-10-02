@@ -5,6 +5,7 @@ import 'package:shootingtrack/app/shooting_track_app.dart';
 import 'package:shootingtrack/di/di.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   registerDependencies();
   runApp(const ShootingTrackApp());

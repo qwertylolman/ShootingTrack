@@ -14,11 +14,11 @@ class WeaponList<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemBuilder: (context, index) => StateBuilder<T>(
-          state,
-          data: (T data) => _buildFeed(data as SuccessFeedState),
-        )
+    return SingleChildScrollView(
+      child: StateBuilder<T>(
+        state,
+        data: (T data) => _buildFeed(data as SuccessFeedState),
+      ),
     );
   }
 
@@ -29,15 +29,10 @@ class WeaponList<T> extends StatelessWidget {
       return _buildItem(success.items[index]);
     }
 
-    return ListView.separated(
+    return ListView.builder(
       padding: EdgeInsets.zero,
       itemCount: itemsCount,
       itemBuilder: itemBuilder,
-      separatorBuilder: (BuildContext context, int index) {
-        return const Divider(
-          height: 1,
-        );
-      },
     );
   }
 
