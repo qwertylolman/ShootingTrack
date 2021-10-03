@@ -9,9 +9,27 @@ class WeaponListCubit extends Cubit<WeaponListState> {
 
   final WeaponsRepository weaponsRepository;
 
+  bool isListeningToBox = false;
+
   Future<void> onInit() async {
     emit(const WeaponListState.loading());
 
+    await _loadData();
+
+    if (!isListeningToBox) {
+      var box = await weaponsRepository.box();
+      box.watch().listen((event) async {
+        await refresh();
+      });
+      isListeningToBox = true;
+    }
+  }
+
+  Future<void> refresh() async {
+    await _loadData();
+  }
+
+  Future<void> _loadData() async {
     var weapons = await weaponsRepository.readAll();
     if (weapons.isEmpty) {
       emit(const WeaponListState.empty());

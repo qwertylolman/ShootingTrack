@@ -8,9 +8,11 @@ class WeaponList<T> extends StatelessWidget {
   const WeaponList({
     Key? key,
     required this.state,
+    this.onRefresh,
   }) : super(key: key);
 
   final BaseState state;
+  final Future<void> Function()? onRefresh;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +29,13 @@ class WeaponList<T> extends StatelessWidget {
       return _buildItem(success.items[index]);
     }
 
-    return ListView.builder(
-      padding: EdgeInsets.zero,
-      itemCount: itemsCount,
-      itemBuilder: itemBuilder,
+    return RefreshIndicator(
+      onRefresh: onRefresh!,
+      child: ListView.builder(
+          padding: EdgeInsets.zero,
+          itemCount: itemsCount,
+          itemBuilder: itemBuilder,
+        ),
     );
   }
 

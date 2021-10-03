@@ -49,6 +49,7 @@ class _WeaponListWidgetState extends State<WeaponListWidget> {
       builder: (BuildContext context, WeaponListState state) {
         return WeaponList<Success>(
           state: state,
+          onRefresh: () => BlocProvider.of<WeaponListCubit>(context).refresh(),
         );
       }),
   );

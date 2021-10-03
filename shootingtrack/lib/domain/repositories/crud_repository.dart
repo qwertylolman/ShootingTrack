@@ -19,7 +19,8 @@ abstract class CrudRepository<T> {
   }
 
   Future<T?> read(String? id) async {
-    if (id?.isEmpty != true) {
+    if (id == null
+      || id.isEmpty) {
       return null;
     }
 

@@ -263,11 +263,15 @@ class _WeaponPageState extends State<WeaponPageWidget> {
             actions: <Widget> [
               TextButton(
                 child: Text(AppLocalizations.of(context)!.confirm),
-                onPressed: () { deleteWeaponConfirmed(weapon); },
+                onPressed: () {
+                  deleteWeaponConfirmed(weapon);
+                  },
               ),
               TextButton(
                 child: Text(AppLocalizations.of(context)!.cancel),
-                onPressed: () { Navigator.of(context).pop(); },
+                onPressed: () {
+                  // Navigator.of(context).pop();
+                  },
               ),
             ],
           );
@@ -275,7 +279,9 @@ class _WeaponPageState extends State<WeaponPageWidget> {
   }
 
   void deleteWeaponConfirmed(Weapon weapon) {
-    Navigator.of(context).pop();
+    BlocProvider.of<WeaponCubit>(context).deleteWeapon(weapon.id);
+    // Navigator.of(context).pop();
+    // Navigator.of(context).pop();
   }
 
   void combineNewNameIfPossible() {
