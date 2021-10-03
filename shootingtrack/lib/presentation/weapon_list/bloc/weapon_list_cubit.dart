@@ -30,13 +30,18 @@ class WeaponListCubit extends Cubit<WeaponListState> {
   }
 
   Future<void> _loadData() async {
-    var weapons = await weaponsRepository.readAll();
-    if (weapons.isEmpty) {
-      emit(const WeaponListState.empty());
-    } else {
-      emit(WeaponListState.success(
-        weapons: weapons.toList(growable: false),
-      ));
+    try {
+      var weapons = await weaponsRepository.readAll();
+      if (weapons.isEmpty) {
+        emit(const WeaponListState.empty());
+      } else {
+        emit(WeaponListState.success(
+          weapons: weapons.toList(growable: false),
+        ));
+      }
+    }
+    catch (e) {
+      emit (WeaponListState.error(e));
     }
   }
 }

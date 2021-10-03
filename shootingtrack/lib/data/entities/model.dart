@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:shootingtrack/data/data.dart';
 
 part 'model.g.dart';
 
@@ -8,9 +9,12 @@ class Model extends HiveObject {
   String id;
   @HiveField(1)
   String name;
+  @HiveField(2)
+  Manufacturer manufacturer;
 
   Model({
     required this.id,
     required this.name,
+    required this.manufacturer,
   });
 }

@@ -36,7 +36,7 @@ class WeaponCubit extends Cubit<WeaponState> {
       String gaugeName,
       ) async {
     var manufacturer = await getManufacturer(manufacturerName);
-    var model = await getModel(modelName);
+    var model = await getModel(modelName, manufacturer);
     var gauge = await getGauge(gaugeName);
 
     await weaponsRepository.createWeapon(name, manufacturer, model, gauge);
@@ -50,7 +50,7 @@ class WeaponCubit extends Cubit<WeaponState> {
       String gaugeName
       ) async {
     var manufacturer = await getManufacturer(manufacturerName);
-    var model = await getModel(modelName);
+    var model = await getModel(modelName, manufacturer);
     var gauge = await getGauge(gaugeName);
     var weapon = (await weaponsRepository.read(id))!;
 
@@ -100,9 +100,11 @@ class WeaponCubit extends Cubit<WeaponState> {
     return models.where((e) => e.name.contains(query));
   }
 
-  Future<Model> getModel(String name) async {
-    var model = await modelsRepository.getByName(name)
-        ?? await modelsRepository.createManufacturer(name);
+  Future<Model> getModel(
+      String name,
+      Manufacturer manufacturer) async {
+    var model = await modelsRepository.getByNameAndManufacturer(name, manufacturer.id)
+        ?? await modelsRepository.createModel(name, manufacturer);
 
     // normalize names
     // names can be matched ignoring case, but user may do some adjustments
