@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:shootingtrack/data/data.dart';
+
+import '../entities.dart';
 
 part 'model.g.dart';
 

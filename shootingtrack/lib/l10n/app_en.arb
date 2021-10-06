@@ -19,6 +19,8 @@
     "weaponModelField": "Model",
     "weaponGaugeField": "Gauge",
 
+    "recordsListTitle": "Records list",
+
     "localizationEmptyOrNullString": "Cannot be empty.",
 
     "areYouSure": "Are you sure?",

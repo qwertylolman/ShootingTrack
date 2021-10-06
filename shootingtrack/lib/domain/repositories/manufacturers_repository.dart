@@ -1,5 +1,5 @@
 import 'package:collection/src/iterable_extensions.dart';
-import 'package:shootingtrack/data/entities/manufacturer.dart';
+import 'package:shootingtrack/data/entities/entities.dart';
 import 'package:shootingtrack/domain/db.dart';
 import 'package:shootingtrack/domain/repositories/crud_repository.dart';
 

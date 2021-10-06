@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
-
-import 'entities.dart';
+import '../entities.dart';
 
 part 'weapon.g.dart';
 

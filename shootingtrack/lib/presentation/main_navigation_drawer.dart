@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:shootingtrack/dimens.dart';
+import 'package:shootingtrack/presentation/shooting_record_list/shooting_record_list.dart';
 import 'package:shootingtrack/presentation/weapon_list/weapon_list_page.dart';
 
 class MainNavigationDrawer extends StatelessWidget {
@@ -15,12 +15,17 @@ class MainNavigationDrawer extends StatelessWidget {
           child: Material(
               child: ListView(
                 children: <Widget>[
-                  const SizedBox(height: Dimens.buttonHeight),
                   buildMenuItem(
                       title: appLocalizations.weaponsListTitle,
                       icon: Icons.construction_outlined,
                       contentColor: contentColor,
                       onTap: () => selectedItem(context, 0)
+                  ),
+                  buildMenuItem(
+                      title: appLocalizations.recordsListTitle,
+                      icon: Icons.add_circle_outline,
+                      contentColor: contentColor,
+                      onTap: () => selectedItem(context, 1)
                   ),
                 ],
               )
@@ -47,6 +52,11 @@ class MainNavigationDrawer extends StatelessWidget {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => const WeaponListPage(),
+        ));
+        break;
+      case 1:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const ShootingRecordListPage(),
         ));
         break;
     }

@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:shootingtrack/common.dart';
 import 'package:shootingtrack/data/data.dart';
-import 'package:shootingtrack/data/entities/weapon.dart';
+import 'package:shootingtrack/data/entities/entities.dart';
 import 'package:shootingtrack/di/di.dart';
 import 'package:shootingtrack/dimens.dart';
 import 'package:shootingtrack/domain/validators/validators.dart';
