@@ -1,44 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'shooting_record.dart';
+part of 'user_settings.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ShootingRecordAdapter extends TypeAdapter<ShootingRecord> {
+class UserSettingsAdapter extends TypeAdapter<UserSettings> {
   @override
-  final int typeId = 5;
+  final int typeId = 6;
 
   @override
-  ShootingRecord read(BinaryReader reader) {
+  UserSettings read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ShootingRecord(
+    return UserSettings(
       id: fields[0] as String,
-      weapon: fields[1] as Weapon,
-      timestamp: fields[2] as DateTime,
-      bulletsFired: fields[3] as int,
-      description: fields[4] as String,
+      lastUsedForShooingTrackWeapon: fields[1] as Weapon?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, ShootingRecord obj) {
+  void write(BinaryWriter writer, UserSettings obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(2)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.weapon)
-      ..writeByte(2)
-      ..write(obj.timestamp)
-      ..writeByte(3)
-      ..write(obj.bulletsFired)
-      ..writeByte(4)
-      ..write(obj.description);
+      ..write(obj.lastUsedForShooingTrackWeapon);
   }
 
   @override
@@ -47,7 +38,7 @@ class ShootingRecordAdapter extends TypeAdapter<ShootingRecord> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ShootingRecordAdapter &&
+      other is UserSettingsAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

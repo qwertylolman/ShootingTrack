@@ -9,12 +9,14 @@ class WeaponCubit extends Cubit<WeaponState> {
     required this.gaugesRepository,
     required this.modelsRepository,
     required this.manufacturersRepository,
+    required this.shootingRecordsRepository,
   }) : super(const WeaponState.initial());
 
   final WeaponsRepository weaponsRepository;
   final GaugesRepository gaugesRepository;
   final ModelsRepository modelsRepository;
   final ManufacturersRepository manufacturersRepository;
+  final ShootingRecordsRepository shootingRecordsRepository;
 
   Future<void> onInit(String? weaponId) async {
     emit(const WeaponState.loading());
@@ -65,7 +67,11 @@ class WeaponCubit extends Cubit<WeaponState> {
   Future<void> deleteWeapon(
       String id,
       ) async {
-    weaponsRepository.delete(id);
+    var weapon = await weaponsRepository.read(id);
+    if (weapon != null) {
+      await shootingRecordsRepository.deleteRecordsForWeapon(weapon);
+      await weaponsRepository.delete(id);
+    }
   }
 
   Future<Iterable<Manufacturer>> getManufacturers(String query) async {

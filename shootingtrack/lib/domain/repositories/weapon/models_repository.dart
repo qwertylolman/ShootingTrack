@@ -3,7 +3,7 @@ import 'package:shootingtrack/data/entities/entities.dart';
 import 'package:shootingtrack/domain/db.dart';
 import 'package:shootingtrack/domain/repositories/crud_repository.dart';
 
-import '../../common.dart';
+import '../../../common.dart';
 
 class ModelsRepository extends CrudRepository<Model> {
   @override

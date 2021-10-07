@@ -3,12 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shootingtrack/di/di.dart';
 import 'package:shootingtrack/presentation/main_navigation_drawer.dart';
-import 'package:shootingtrack/presentation/weapon/weapon_page.dart';
-import 'package:shootingtrack/presentation/weapon_list/widgets/weapon_list.dart';
-
-import 'bloc/weapon_list_cubit.dart';
-import 'bloc/weapon_list_state.dart';
-
+import 'package:shootingtrack/presentation/shooting_record_list/bloc/shooting_record_list_cubit.dart';
 
 class ShootingRecordListPage extends StatelessWidget {
   const ShootingRecordListPage({Key? key}) : super(key: key);
@@ -17,7 +12,7 @@ class ShootingRecordListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<ShootingRecordListCubit>(
       create: (BuildContext context) => ShootingRecordListCubit(
-        weaponsRepository: getIt.get(),
+        shootingRecordRepository: getIt.get(),
       )..onInit(),
       child: const ShootingRecordListWidget(),
     );

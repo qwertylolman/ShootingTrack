@@ -9,7 +9,7 @@ abstract class CrudRepository<T> {
   }
 
   Future<T> create(String key, T entity) async {
-    (await box()).put(key, entity);
+    await (await box()).put(key, entity);
 
     return entity;
   }
@@ -29,15 +29,22 @@ abstract class CrudRepository<T> {
 
   Future<T> update(String key, T entity) async {
     if (entity is HiveObject) {
-      entity.save();
+      await entity.save();
     } else {
-      (await box()).put(key, entity);
+      await (await box()).put(key, entity);
     }
 
     return entity;
   }
 
   Future<void> delete(String key) async {
-    (await box()).delete(key);
+    await (await box()).delete(key);
+  }
+
+  Future<void> deleteItems(Iterable<String> keys) async {
+    var b = await box();
+    for (var key in keys) {
+      await b.delete(key);
+    }
   }
 }

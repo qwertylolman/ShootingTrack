@@ -10,9 +10,18 @@ class ShootingRecord extends HiveObject {
   String id;
   @HiveField(1)
   Weapon weapon;
+  @HiveField(2)
+  DateTime timestamp;
+  @HiveField(3)
+  int bulletsFired;
+  @HiveField(4)
+  String description;
 
   ShootingRecord({
     required this.id,
     required this.weapon,
+    required this.timestamp,
+    required this.bulletsFired,
+    required this.description,
   });
 }

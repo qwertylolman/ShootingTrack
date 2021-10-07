@@ -8,4 +8,6 @@ void registerDependencies() {
   getIt.registerSingleton(GaugesRepository());
   getIt.registerSingleton(ManufacturersRepository());
   getIt.registerSingleton(ModelsRepository());
+  getIt.registerSingleton(ShootingRecordsRepository());
+  getIt.registerSingleton(UserSettingsRepository());
 }
